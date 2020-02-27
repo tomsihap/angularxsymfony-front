@@ -5,7 +5,7 @@ import {Tag} from './tag';
 export interface Task {
 
   id: number;
-  title: string;
+  name: string;
   user: User;
   category: Category;
   tags: Tag[];
