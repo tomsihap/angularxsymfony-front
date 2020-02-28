@@ -1,0 +1,6 @@
+<ul>
+
+    <li *ngFor="let task of tasks">
+        <a href="#" (click)="sendTaskToEdit(task)">{{ task.name }}</a>
+    </li>
+</ul>

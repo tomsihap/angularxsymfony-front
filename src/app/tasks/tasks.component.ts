@@ -1,49 +1,35 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {Category} from '../category';
 import {User} from '../user';
 import {Task} from '../task';
 import {Tag} from '../tag';
 
 @Component({
-  selector: 'app-tasks',
-  templateUrl: './tasks.component.html',
-  styleUrls: ['./tasks.component.css']
+    selector: 'app-tasks',
+    templateUrl: './tasks.component.html',
+    styleUrls: ['./tasks.component.css']
 })
-export class TasksComponent implements OnInit {
+export class TasksComponent implements OnInit, OnChanges {
 
+    @Input() tasks: Task[];
+    @Input() taskEdited: Task;
 
-  user: User = {
-    id: 1,
-    email: 'test@test.com'
-  }
+    taskEditedCardVisible = true;
 
-  category: Category = {
-    id: 1,
-    name: 'To-do list personnelle'
-  }
+    constructor() { }
 
-  tags: Tag[] = [
-    {
-      id: 1,
-      name: 'a-faire'
-    },
-    {
-      id: 2,
-      name: 'urgent'
+    ngOnInit(): void {
+        console.log(this.taskEdited);
     }
-  ]
 
-  task: Task = {
-    id: 1,
-    name: 'Nouvelle tâche',
-    user: this.user,
-    category: this.category,
-    tags: this.tags
-  }
+    ngOnChanges(changes: SimpleChanges): void {
+        if (typeof (this.taskEdited) !== null ) {
+            this.taskEditedCardVisible = true;
+        }
+    }
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+    closeEditPanel(): void {
+        this.taskEditedCardVisible = false;
+    }
 
 }
